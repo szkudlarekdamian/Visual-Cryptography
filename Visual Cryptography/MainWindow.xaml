@@ -5,8 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Visual_Cryptography"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1000"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <UniformGrid Columns="6" Margin="5,0">
+            <FrameworkElement x:Name="c1"/>
+        </UniformGrid>
+        <TabControl x:Name="tabControl" Background="#21232C">
+            <TabItem Header="Podział obrazu" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <Grid>
+                    <Grid Margin="10,10,743,533">
+                        <RadioButton x:Name="twoPixels" Checked="twoPixels_Checked" FontSize="18"  Foreground="AliceBlue" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="43,56,0,0" RenderTransformOrigin="-2.2,-0.429"/>
+                        <Label Height="30" Content="Dwa piksele" HorizontalContentAlignment="Center" Foreground="AntiqueWhite" Margin="10,69,138,1" />
+                        <Label Height="30" Content="Cztery piksele" HorizontalContentAlignment="Center" Foreground="AntiqueWhite" Margin="112,70,27,0" />
+                        <RadioButton x:Name="fourPixels" Checked="fourPixels_Checked" IsChecked="True" FontSize="18"  Foreground="AliceBlue" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="153,56,0,0"/>
+                        <TextBlock Margin="11,3,27,49" Text="Ile pikseli wyjściowych ma przypaść na jeden piksel wejściowy?" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Foreground="AntiqueWhite"  Padding=" 0 5" Height="48" RenderTransformOrigin="0.519,0.2"/>
+                    </Grid>
+                    <Button x:Name="imageLoad" Click="imageLoad_Click" Content="Wczytaj obraz" FontSize="16" HorizontalAlignment="Left" Margin="250,45,0,0" VerticalAlignment="Top" Height="65" Width="217"/>
+                    <Image x:Name="image" Margin="10,110,521,43"/>
+                    <Image x:Name="firstShare" Margin="510,110,10,303" RenderTransformOrigin="0.5,0.5"/>
+                    <Image x:Name="secondShare" Margin="510,370,10,43"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Łączenie udziałów" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <Grid>
+                    <Button x:Name="mergeFirst_Button" Click="mergeFirst_Button_Click" Content="Załaduj pierwszy udział" Margin="72,60,753,548"/>
+                    <Button x:Name="mergeReset_Button" Click="mergeReset_Button_Click" Content="Reset" Background="Red" Margin="916,10,10,588"/>
+                    <Image x:Name="mergeFirst" Margin="42,100,711,383" RenderTransformOrigin="0.5,0.5"/>
+
+                    <Button x:Name="mergeSecond_Button" Click="mergeSecond_Button_Click" Content="Załaduj drugi udział" Margin="337,60,488,548"/>
+                    <Image x:Name="mergeSecond" Margin="307,100,446,383" RenderTransformOrigin="0.5,0.5"/>
+
+                    <Image x:Name="mergedShares" Margin="642,100,111,383" RenderTransformOrigin="0.5,0.5"/>
+                    <Button x:Name="saveMerged_Button" Click="saveMerged_Button_Click" Visibility="Hidden" Content="Zapisz zdjęcie" Margin="679,60,146,548"/>
+
+                    <Grid Visibility="Collapsed" x:Name="demo">
+                        <Label Content="Demo" FontSize="28" HorizontalContentAlignment="Center" Foreground="AntiqueWhite" Margin="10,265,841,325"/>
+                        <Canvas x:Name="canvas" Width="900" Height="300" Background="Black"
+                            MouseLeftButtonDown="CanvasMouseLeftButtonDown"
+                            MouseLeftButtonUp="CanvasMouseLeftButtonUp"
+                            MouseMove="CanvasMouseMove" Margin="42,313,46,10"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Pomoc" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <ScrollViewer>
+                    <TextBox x:Name="help" FontSize="12" Padding="10" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True"/>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
